@@ -3,6 +3,7 @@ languageCode = "en"
 title = "ML Zero To Hero"
 theme = "stack"
 defaultContentLanguage = "en"
+disablePathToLower = true
 
 [pagination]
     pagerSize = 10
@@ -59,3 +60,4 @@ defaultContentLanguage = "en"
 [taxonomies]
     category = "categories"
     tag = "tags"
+

@@ -3,7 +3,7 @@ title: "Starting My AI Learning Journey"
 date: 2026-03-11
 description: "Documenting my experience learning AI from scratch"
 categories:
-    - ai-fundamentals
+    - AI-Fundamentals
 tags:
     - beginner
     - learning-notes
