@@ -1,0 +1,61 @@
+baseURL = "https://taaaaaaw.github.io/"
+languageCode = "en"
+title = "ML Zero To Hero"
+theme = "stack"
+defaultContentLanguage = "en"
+
+[pagination]
+    pagerSize = 10
+
+[params]
+    mainSections = ["posts"]
+    rssFullContent = true
+
+    [params.footer]
+        since = 2026
+        customText = ""
+
+    [params.dateFormat]
+        published = "2006-01-02"
+        lastUpdated = "2006-01-02"
+
+    [params.sidebar]
+        compact = false
+
+    [params.article]
+        headingAnchor = true
+        math = true
+        toc = true
+        readingTime = true
+
+        [params.article.list]
+            showTags = true
+
+    [params.colorScheme]
+        toggle = true
+        default = "auto"
+
+[menu]
+    [[menu.main]]
+        name = "Home"
+        url = "/"
+        weight = 1
+
+    [[menu.main]]
+        name = "Categories"
+        url = "/categories/"
+        weight = 2
+
+    [[menu.main]]
+        name = "Tags"
+        url = "/tags/"
+        weight = 3
+
+    [[menu.main]]
+        name = "About"
+        url = "/about/"
+        weight = 4
+
+[taxonomies]
+    category = "categories"
+    tag = "tags"

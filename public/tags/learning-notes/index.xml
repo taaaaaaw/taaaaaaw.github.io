@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Learning-Notes on ML Zero To Hero</title>
+        <link>http://localhost:1313/tags/learning-notes/</link>
+        <description>Recent content in Learning-Notes on ML Zero To Hero</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/learning-notes/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>Starting My AI Learning Journey</title>
+            <link>http://localhost:1313/posts/ai-fundamentals/hello-world/</link>
+            <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+            <guid>http://localhost:1313/posts/ai-fundamentals/hello-world/</guid>
+            <description>&lt;h2 id=&#34;why-i-started-learning-ai&#34;&gt;&lt;a href=&#34;#why-i-started-learning-ai&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Why I Started Learning AI&#xA;&lt;/h2&gt;&lt;p&gt;Write your motivation here&amp;hellip;&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-goals&#34;&gt;&lt;a href=&#34;#learning-goals&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Learning Goals&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Understand basic machine learning concepts&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Implement my first model&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Read and understand a research paper&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;thoughts&#34;&gt;&lt;a href=&#34;#thoughts&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Thoughts&#xA;&lt;/h2&gt;&lt;p&gt;Write your thoughts here&amp;hellip;&lt;/p&gt;&#xA;</description>
+        </item></channel>
+</rss>
