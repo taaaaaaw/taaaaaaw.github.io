@@ -76,6 +76,19 @@ Where:
 - $\mu$ = mean of the feature
 - $\sigma$ = standard deviation of the feature
 
+**How to compute $\sigma$:**
+
+$$\sigma = \sqrt{\frac{1}{m} \sum_{i=1}^{m} (x^{(i)} - \mu)^2}$$
+
+Step by step:
+1. Compute the mean $\mu$
+2. Subtract the mean from each value to get the deviation
+3. Square each deviation (to remove negatives)
+4. Average the squared deviations — this is the **variance** $\sigma^2$
+5. Take the square root to get the standard deviation $\sigma$
+
+Intuitively, $\sigma$ measures how **spread out** the data is around the mean. A large $\sigma$ means the data is widely scattered; a small $\sigma$ means it's tightly clustered.
+
 This is the most widely used technique because it handles outliers better than min-max normalization and works well with most machine learning algorithms.
 
 ---
