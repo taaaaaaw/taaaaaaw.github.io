@@ -101,3 +101,32 @@ When $\hat{y}^{(i)} < y^{(i)}$ (prediction too low):
 - $w$ increases → the line gets steeper → predictions go up
 
 Each update nudges the line closer to the data.
+
+---
+
+## Alternative: The Normal Equation
+
+Instead of iteratively adjusting parameters, the **Normal Equation** solves for $w$ and $b$ directly in one step using linear algebra:
+
+$$\mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
+
+Where:
+- $\mathbf{X}$ = the matrix of input features (with a column of 1s added for the bias term)
+- $\mathbf{y}$ = the vector of target values
+
+No learning rate, no iterations — just plug in the data and get the optimal parameters immediately.
+
+### Drawbacks
+
+- **Slow on large datasets** — computing $(\mathbf{X}^T \mathbf{X})^{-1}$ requires matrix inversion, which scales at roughly $O(n^3)$ where $n$ is the number of features. With thousands of features, this becomes very expensive.
+- **Only works for linear regression** — the Normal Equation has no equivalent for other models like logistic regression or neural networks, so gradient descent remains the general-purpose tool.
+- **Matrix may not be invertible** — if features are linearly dependent (e.g., duplicate columns) or you have more features than training examples, $\mathbf{X}^T \mathbf{X}$ becomes singular and cannot be inverted.
+
+### When to Use Which
+
+| | Gradient Descent | Normal Equation |
+|---|---|---|
+| Number of features | Works well with large $n$ | Slow when $n$ is large |
+| Iterations needed | Yes | No |
+| Learning rate | Must be tuned | Not needed |
+| Applicability | Any model | Linear regression only |
