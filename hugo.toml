@@ -1,14 +1,14 @@
 baseURL = "https://taaaaaaw.github.io/"
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
 languageCode = "en"
 title = "From Zero"
 theme = "stack"
 defaultContentLanguage = "en"
 disablePathToLower = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [pagination]
     pagerSize = 10
