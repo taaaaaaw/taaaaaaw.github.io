@@ -250,56 +250,41 @@ NumPy compares shapes element-wise from the right. Two dimensions are compatible
 - They are equal, or
 - One of them is 1
 
-Try it yourself — run the code below directly in your browser:
+<small>Four broadcasting examples — from simple scalar addition to logistic regression.</small>
 
-{{< pyrunner >}}
+```python
 import numpy as np
 
 A = np.array([[1, 2, 3],
-              [4, 5, 6]])   # shape (2, 3)
+              [4, 5, 6]])  # shape (2, 3)
 
-# ── Example 1: Scalar broadcast ──────────────────────────────
-# 100 is added to every element
-print("=" * 40)
-print("Example 1: Scalar Broadcast")
-print("=" * 40)
-print(f"A (shape {A.shape}):\n{A}")
-print(f"\nA + 100:\n{A + 100}")
+# Example 1: Scalar broadcast — 100 added to every element
+print(A + 100)
+# [[101 102 103]
+#  [104 105 106]]
 
-# ── Example 2: Row vector broadcast ──────────────────────────
-# b (shape 3,) is added to each row of A
-b = np.array([10, 20, 30])  # shape (3,)
-print("\n" + "=" * 40)
-print("Example 2: Row Vector Broadcast")
-print("=" * 40)
-print(f"b (shape {b.shape}): {b}")
-print(f"\nA + b:\n{A + b}")
+# Example 2: Row vector broadcast — b added to each row
+b = np.array([10, 20, 30])  # shape (3,) → expands to (2, 3)
+print(A + b)
+# [[11 22 33]
+#  [14 25 36]]
 
-# ── Example 3: Column vector broadcast ───────────────────────
-# c (shape 2,1) is added to each column of A
+# Example 3: Column vector broadcast — c added to each column
 c = np.array([[10],
-              [20]])         # shape (2, 1)
-print("\n" + "=" * 40)
-print("Example 3: Column Vector Broadcast")
-print("=" * 40)
-print(f"c (shape {c.shape}):\n{c}")
-print(f"\nA + c:\n{A + c}")
+              [20]])        # shape (2, 1) → expands to (2, 3)
+print(A + c)
+# [[11 12 13]
+#  [24 25 26]]
 
-# ── Example 4: Logistic regression ───────────────────────────
-# bias scalar broadcasts across all m training examples
-W    = np.array([[0.5], [1.0], [-0.3]])   # shape (3, 1)
-X    = np.array([[1, 2, 3, 4],            # shape (3, 4)
+# Example 4: Logistic regression — bias broadcasts across all m examples
+W    = np.array([[0.5], [1.0], [-0.3]])  # shape (3, 1)
+X    = np.array([[1, 2, 3, 4],           # shape (3, 4)
                  [0, 1, 0, 1],
                  [2, 0, 1, 3]])
 bias = 2.0
-Z    = np.dot(W.T, X) + bias              # bias → broadcasts to (1, 4)
-print("\n" + "=" * 40)
-print("Example 4: Logistic Regression Bias")
-print("=" * 40)
-print(f"W.T shape: {W.T.shape},  X shape: {X.shape}")
-print(f"Z = W.T @ X + bias  →  shape {Z.shape}")
-print(f"\nZ:\n{Z.round(2)}")
-{{< /pyrunner >}}
+Z    = np.dot(W.T, X) + bias             # bias → broadcasts to (1, 4)
+print(Z.shape)  # (1, 4)
+```
 
 In logistic regression, `np.dot(W.T, X) + b` works because $b$ is a scalar — NumPy broadcasts it across all $m$ columns.
 
