@@ -53,9 +53,14 @@ disablePathToLower = true
         weight = 2
 
     [[menu.main]]
+        name = "Deep Learning"
+        url = "/categories/Deep-Learning/"
+        weight = 3
+
+    [[menu.main]]
         name = "DevSecOps"
         url = "/categories/DevSecOps/"
-        weight = 3
+        weight = 4
 
     [[menu.main]]
         name = "Tags"
