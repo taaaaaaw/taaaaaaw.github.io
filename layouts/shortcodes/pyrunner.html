@@ -1,9 +1,7 @@
-{{ if not (.Store.Get "pyodide_loaded") }}
-{{ .Store.Set "pyodide_loaded" true }}
 <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
 <script>
-  window._pyodideInstance = null;
-  window._pyodideLoading = null;
+  window._pyodideInstance = window._pyodideInstance || null;
+  window._pyodideLoading = window._pyodideLoading || null;
 
   async function getPyodide() {
     if (window._pyodideInstance) return window._pyodideInstance;
@@ -105,7 +103,6 @@ sys.stderr = StringIO()
   }
   .py-output.error { color: #c00; background: #fff5f5; }
 </style>
-{{ end }}
 <div class="pyrunner">
   <div class="py-header">
     <span>🐍 Python</span>
