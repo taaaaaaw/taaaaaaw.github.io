@@ -255,38 +255,50 @@ Try it yourself — run the code below directly in your browser:
 {{< pyrunner >}}
 import numpy as np
 
-# Example 1: scalar broadcast
-# Adding a single number to every element of a matrix
 A = np.array([[1, 2, 3],
-              [4, 5, 6]])
-print("A:")
-print(A)
-print("\nA + 100 (scalar broadcast):")
-print(A + 100)
+              [4, 5, 6]])   # shape (2, 3)
 
-# Example 2: row vector broadcast
-# b has shape (3,) → broadcast to match each row of A (2, 3)
-b = np.array([10, 20, 30])
-print("\nA + b (row vector broadcast):")
-print(A + b)
+# ── Example 1: Scalar broadcast ──────────────────────────────
+# 100 is added to every element
+print("=" * 40)
+print("Example 1: Scalar Broadcast")
+print("=" * 40)
+print(f"A (shape {A.shape}):\n{A}")
+print(f"\nA + 100:\n{A + 100}")
 
-# Example 3: column vector broadcast
-# c has shape (2, 1) → broadcast to match each column of A (2, 3)
+# ── Example 2: Row vector broadcast ──────────────────────────
+# b (shape 3,) is added to each row of A
+b = np.array([10, 20, 30])  # shape (3,)
+print("\n" + "=" * 40)
+print("Example 2: Row Vector Broadcast")
+print("=" * 40)
+print(f"b (shape {b.shape}): {b}")
+print(f"\nA + b:\n{A + b}")
+
+# ── Example 3: Column vector broadcast ───────────────────────
+# c (shape 2,1) is added to each column of A
 c = np.array([[10],
-              [20]])
-print("\nA + c (column vector broadcast):")
-print(A + c)
+              [20]])         # shape (2, 1)
+print("\n" + "=" * 40)
+print("Example 3: Column Vector Broadcast")
+print("=" * 40)
+print(f"c (shape {c.shape}):\n{c}")
+print(f"\nA + c:\n{A + c}")
 
-# Example 4: logistic regression — bias broadcasts across all training examples
-W = np.array([[0.5], [1.0], [-0.3]])  # shape (3, 1)
-X = np.array([[1, 2, 3, 4],           # shape (3, 4) — 4 training examples
-              [0, 1, 0, 1],
-              [2, 0, 1, 3]])
+# ── Example 4: Logistic regression ───────────────────────────
+# bias scalar broadcasts across all m training examples
+W    = np.array([[0.5], [1.0], [-0.3]])   # shape (3, 1)
+X    = np.array([[1, 2, 3, 4],            # shape (3, 4)
+                 [0, 1, 0, 1],
+                 [2, 0, 1, 3]])
 bias = 2.0
-Z = np.dot(W.T, X) + bias             # bias (scalar) broadcasts to shape (1, 4)
-print("\nLogistic regression: Z = W.T @ X + bias")
-print("Z shape:", Z.shape)
-print("Z:", Z)
+Z    = np.dot(W.T, X) + bias              # bias → broadcasts to (1, 4)
+print("\n" + "=" * 40)
+print("Example 4: Logistic Regression Bias")
+print("=" * 40)
+print(f"W.T shape: {W.T.shape},  X shape: {X.shape}")
+print(f"Z = W.T @ X + bias  →  shape {Z.shape}")
+print(f"\nZ:\n{Z.round(2)}")
 {{< /pyrunner >}}
 
 In logistic regression, `np.dot(W.T, X) + b` works because $b$ is a scalar — NumPy broadcasts it across all $m$ columns.
