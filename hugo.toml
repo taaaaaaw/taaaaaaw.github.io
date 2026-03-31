@@ -1,4 +1,9 @@
 baseURL = "https://taaaaaaw.github.io/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 languageCode = "en"
 title = "From Zero"
 theme = "stack"

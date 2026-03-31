@@ -1,0 +1,116 @@
+{{ if not (.Page.Scratch.Get "pyodide_loaded") }}
+{{ .Page.Scratch.Set "pyodide_loaded" true }}
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script>
+  window._pyodideInstance = null;
+  window._pyodideLoading = null;
+
+  async function getPyodide() {
+    if (window._pyodideInstance) return window._pyodideInstance;
+    if (!window._pyodideLoading) {
+      window._pyodideLoading = loadPyodide();
+    }
+    window._pyodideInstance = await window._pyodideLoading;
+    return window._pyodideInstance;
+  }
+
+  async function runPython(btn) {
+    const container = btn.closest('.pyrunner');
+    const code = container.querySelector('.py-code').value;
+    const output = container.querySelector('.py-output');
+
+    btn.disabled = true;
+    btn.textContent = '⏳ Loading...';
+    output.textContent = '';
+
+    try {
+      const pyodide = await getPyodide();
+      btn.textContent = '⏳ Running...';
+
+      pyodide.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+sys.stderr = StringIO()
+`);
+
+      pyodide.runPython(code);
+
+      const stdout = pyodide.runPython('sys.stdout.getvalue()');
+      const stderr = pyodide.runPython('sys.stderr.getvalue()');
+      output.textContent = stdout + (stderr ? '\n[stderr]\n' + stderr : '') || '(no output)';
+      output.classList.remove('error');
+    } catch (err) {
+      output.textContent = 'Error:\n' + err.message;
+      output.classList.add('error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '▶ Run';
+    }
+  }
+</script>
+<style>
+  .pyrunner {
+    border: 1px solid var(--card-separator-color, #e0e0e0);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    font-family: monospace;
+  }
+  .py-header {
+    background: #2d2d2d;
+    color: #ccc;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .py-code {
+    width: 100%;
+    font-family: monospace;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    padding: 14px;
+    border: none;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    resize: vertical;
+    min-height: 120px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  .py-run-btn {
+    background: #2ea043;
+    color: white;
+    border: none;
+    padding: 5px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: sans-serif;
+  }
+  .py-run-btn:hover { background: #238636; }
+  .py-run-btn:disabled { background: #555; cursor: not-allowed; }
+  .py-output {
+    padding: 12px 14px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    background: #f6f8fa;
+    color: #333;
+    min-height: 2.5rem;
+    white-space: pre-wrap;
+    border-top: 1px solid #ddd;
+    margin: 0;
+  }
+  .py-output.error { color: #c00; background: #fff5f5; }
+</style>
+{{ end }}
+<div class="pyrunner">
+  <div class="py-header">
+    <span>🐍 Python</span>
+    <button class="py-run-btn" onclick="runPython(this)">▶ Run</button>
+  </div>
+  <textarea class="py-code">{{ .Inner | trim }}</textarea>
+  <pre class="py-output">Click ▶ Run to execute</pre>
+</div>
