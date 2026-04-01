@@ -108,6 +108,6 @@ sys.stderr = StringIO()
     <span>🐍 Python</span>
     <button class="py-run-btn" onclick="runPython(this)">▶ Run</button>
   </div>
-  <textarea class="py-code">{{ .Inner | trim }}</textarea>
+  <textarea class="py-code">{{ strings.TrimSpace .Inner }}</textarea>
   <pre class="py-output">Click ▶ Run to execute</pre>
 </div>
