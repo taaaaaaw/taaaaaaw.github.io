@@ -25,6 +25,8 @@
       const pyodide = await getPyodide();
       btn.textContent = '⏳ Running...';
 
+      await pyodide.loadPackagesFromImports(code);
+
       pyodide.runPython(`
 import sys
 from io import StringIO
