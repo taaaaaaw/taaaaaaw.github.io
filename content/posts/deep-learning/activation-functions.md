@@ -39,6 +39,46 @@ Activation functions introduce **non-linearity**, allowing the network to learn 
 
 ---
 
+## Linear vs Non-Linear Activation Functions
+
+### Linear Activation
+
+$$g(z) = z \quad \text{(or } g(z) = cz \text{ for some constant } c\text{)}$$
+
+A linear activation is just a straight line — output is proportional to input. No matter how many layers you stack, the entire network collapses to one linear equation:
+
+$$a^{[3]} = W^{[3]}(W^{[2]}(W^{[1]}x + b^{[1]}) + b^{[2]}) + b^{[3]} = Ax + B$$
+
+This means a 100-layer network with linear activations is **no more powerful than logistic regression**. It can only learn straight-line decision boundaries.
+
+### Non-Linear Activation
+
+A non-linear activation breaks this collapse. After applying $g$, the output can no longer be expressed as a simple $Ax + B$:
+
+$$a^{[1]} = g(W^{[1]}x + b^{[1]}) \quad \leftarrow \text{non-linear}$$
+
+$$a^{[2]} = g(W^{[2]}a^{[1]} + b^{[2]}) \quad \leftarrow \text{cannot be simplified to } Ax + B$$
+
+Each non-linear layer learns a genuinely new transformation. This is what allows deep networks to approximate **any function** — not just lines.
+
+### What Can Each Type Learn?
+
+| Activation | Decision boundary | Example problems it can solve |
+|------------|------------------|-------------------------------|
+| Linear | Straight line only | Linearly separable data |
+| Non-linear | Curves, spirals, circles | XOR, image classification, speech |
+
+### The Only Exception
+
+The **output layer** of a regression network uses a linear activation — because we want to predict a real-valued number with no range restriction. But all hidden layers should be non-linear.
+
+```
+Input → [Non-linear] → [Non-linear] → [Non-linear] → [Linear output]
+         hidden 1        hidden 2        hidden 3       (regression only)
+```
+
+---
+
 ## Sigmoid
 
 $$\sigma(z) = \frac{1}{1 + e^{-z}}$$
