@@ -66,6 +66,18 @@ Controls how big each step is during gradient descent. A critical hyperparameter
 - **Too small** → converges, but very slowly
 - **Just right** → smoothly reaches the minimum
 
+Unlike $w$ and $b$, the learning rate is **not learned by the model** — it is a **hyperparameter** you set before training. $w$ and $b$ are updated automatically by gradient descent; $\alpha$ is chosen by you.
+
+**How to choose a learning rate:**
+
+There is no formula to compute the perfect value. The standard approach is to experiment:
+
+1. **Plot the cost curve** — after each iteration, record $J(w, b)$. If cost consistently decreases, the learning rate is working. If it oscillates or increases, it's too large. If it barely moves, it's too small.
+2. **Try a range of values** — common starting points are $0.001$, $0.01$, $0.1$, $1$. A useful strategy is to multiply by 3x each time and observe the effect.
+3. **Learning rate schedule** — start with a larger value to converge quickly, then gradually reduce it to fine-tune toward the minimum.
+
+This process of finding the right hyperparameter values is called **hyperparameter tuning**, and it's an important skill in machine learning.
+
 ### Gradient
 The partial derivative of the cost function with respect to a parameter. It tells you the **direction and steepness** of the slope at the current position. Gradient descent moves in the **opposite** direction of the gradient (downhill).
 
