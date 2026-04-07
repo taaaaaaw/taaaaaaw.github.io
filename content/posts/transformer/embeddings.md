@@ -134,6 +134,59 @@ A typical vocabulary size is **30,000–100,000 tokens**.
 
 ---
 
+## Types of Embeddings
+
+### 1. Token Embeddings
+The most fundamental type — maps each token ID to a dense vector. This is what most people mean when they say "embedding" in the context of language models. Learned during training and stored in the embedding matrix $E$.
+
+### 2. Positional Embeddings
+Encodes the **position** of each token in the sequence. Added on top of token embeddings because the transformer architecture itself has no built-in sense of order.
+
+- **Absolute positional:** one vector per position (0, 1, 2, ...) — used in BERT, GPT-2
+- **Sinusoidal:** fixed mathematical functions of position — used in the original Transformer
+- **Relative positional:** encodes distance between tokens rather than absolute position — used in T5
+- **RoPE:** rotates attention vectors by position — used in LLaMA, Mistral, GPT-4
+
+### 3. Segment Embeddings
+Used in models like BERT to distinguish between two different input sequences (e.g. question vs answer, sentence A vs sentence B):
+
+```
+[CLS] I love cats [SEP] Cats are great [SEP]
+  ↑                        ↑
+Segment A embedding    Segment B embedding
+```
+
+Each token gets an additional vector indicating which segment it belongs to.
+
+### 4. Sentence Embeddings
+A single vector representing an **entire sentence or document** (not individual tokens). Produced by pooling token embeddings — typically taking the `[CLS]` token output or averaging all token embeddings.
+
+Used for:
+- Semantic search (find similar documents)
+- Clustering (group related texts)
+- Retrieval-augmented generation (RAG)
+
+Popular models: `text-embedding-ada-002` (OpenAI), `all-MiniLM` (sentence-transformers)
+
+### 5. Multimodal Embeddings
+Maps different types of data (images, audio, text) into the **same vector space**, so they can be compared directly.
+
+| Model | Maps |
+|-------|------|
+| CLIP (OpenAI) | Images and text → same space |
+| Whisper | Audio → text embeddings |
+| GPT-4V | Images → tokens for the LLM |
+
+```
+"a photo of a cat" ──embed──► [0.2, 0.5, ...]
+                                          ↕ cosine similarity ≈ high
+📷 (photo of a cat) ──embed──► [0.2, 0.4, ...]
+```
+
+This enables cross-modal search — find images using text queries, or vice versa.
+
+---
+
 ## Embeddings Inside a Transformer
 
 In a transformer model, embeddings are the very first step:
